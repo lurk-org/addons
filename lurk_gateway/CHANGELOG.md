@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+- The first version a hub reaches through an update from the app or the fleet page; no functional change.
+
 ## 0.6.0
 
 - The add-on takes the `update` intent: it registers the fifteen-minute
