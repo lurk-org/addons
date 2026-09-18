@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.6.0
+
+- The add-on takes the `update` intent: it registers the fifteen-minute
+  registry login the intent carries in the Supervisor, has Home Assistant
+  install the newer version, removes the login again whichever way the
+  install ends, and acks once, after its own restart. Nothing of the login
+  reaches the state file or the log.
+- The daily pass refreshes the store and installs nothing: this add-on moves
+  only when the owner or staff ask for it, the OS and Core only through the
+  panel's action.
+- The hub tells Lurk its Home Assistant login as soon as it is connected
+  after setup, so the login the app shows is the one the hub accepts.
+
+## 0.5.0
+
+- The link carries the auth document, the claim and the reset and credential
+  reports; gateway tokens are verified against the document's key; the
+  cloud's clock stamps documents and judges intents; a 1011 keeps the
+  backoff; the LAN socket dedupes by `X-Lurk-Client`; the JWKS fetch, `did`
+  and the Device CA are gone.
+- The cloud link carries documents, states, events and intents; MQTT,
+  shadows and the config selection are gone.
+
+## 0.4.0
+
+- The add-on lives in the `lurk` monorepo under `gateway/`; the image is
+  `registry.digitalocean.com/lurk/gateway`, built on a `gateway-vX.Y.Z` tag.
+  Boxes pull it with a read-only registry token. No code change.
+
 ## 0.3.23
 
 - The voice relay logs the events that shape a turn without logging any

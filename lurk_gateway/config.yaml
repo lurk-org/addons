@@ -1,5 +1,5 @@
 name: Lurk Gateway
-version: "0.3.23"
+version: "0.6.0"
 slug: lurk_gateway
 description: >-
   Local Home Assistant manager and the single uplink/downlink channel to the
@@ -9,10 +9,9 @@ url: https://github.com/lurk-cloud/addons
 arch:
   - aarch64
   - amd64
-# Pulled through Lurk's registry (a gate in front of the private GHCR
-# package): every unit holds its own login, set by the station and then by
-# the add-on itself at enrollment. Boxes never see GHCR.
-image: registry.lurk.site/lurk-cloud/lurk-gateway
+# Pulled from DigitalOcean's registry with a fifteen-minute read-only
+# credential the cloud mints and sends inside the update intent.
+image: registry.digitalocean.com/lurk/gateway
 init: false
 startup: application
 boot: auto
@@ -39,7 +38,7 @@ ports_description:
 map:
   - addon_config:rw
 # cloud_base_url defaults to production; the bench overrides it through
-# scripts/push.sh (CLOUD_BASE_URL in happ/.env). serial normally comes from the
+# scripts/push.sh (CLOUD_BASE_URL in gateway/.env). serial normally comes from the
 # hardware and the override exists only for bench units without one.
 # enrollment_token is written once by the factory (or by support after a
 # reflash) and is burned by the cloud on use.
