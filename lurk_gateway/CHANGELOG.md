@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1
+
+- An update the hub cannot run through Home Assistant fails saying why: Home
+  Assistant has no update entity for the add-on yet, which it creates when
+  Core next starts. The hub no longer asks the Supervisor for a self-update,
+  a request the Supervisor always refuses.
+
 ## 0.7.0
 
 - The hub speaks the link's renamed instants: `sent_at` on the welcome,
