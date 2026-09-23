@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.2
+
+- A control answers with the state the device reached, not a state read
+  before it moved: the hub waits up to three seconds for Home Assistant to
+  report the change, and acks the cloud's intent or answers the LAN call
+  with that row, or with none when the device reported nothing in time. A
+  device behind a cloud integration no longer flickers back on the phone.
+
 ## 0.7.1
 
 - An update the hub cannot run through Home Assistant fails saying why: Home
