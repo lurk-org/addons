@@ -1,8 +1,22 @@
 # Changelog
 
+## 0.7.0
+
+- The hub speaks the link's renamed instants: `sent_at` on the welcome,
+  `created_at` on an intent, `updated_at`, `changed_at` and `occurred_at` on
+  what it sends, every one a millisecond in UTC, and every id it mints a
+  UUIDv7 from its one clock. A hub on 0.6.1 keeps its link through the
+  cloud's bridge until it takes this update.
+- Every member of the auth document is a UUID and its `not_before_at` is an
+  instant or null.
+
 ## 0.6.1
 
-- The first version a hub reaches through an update from the app or the fleet page; no functional change.
+- The hub sends Lurk its Home Assistant login at every connection until the
+  cloud acks one of those reports, so a link that drops before the ack no
+  longer leaves the app showing a login the hub has replaced.
+- A registry login the Supervisor refuses leaves nothing registered behind it,
+  and the log says what happened without quoting the login.
 
 ## 0.6.0
 
@@ -99,7 +113,7 @@
 
 - `WS /v1/voice`: the hub relays a phone's Gemini Live session on the LAN.
   Edge JWT bearer, a `start` frame carrying the minted socket URL, then an
-  opaque relay — the hub never reads a frame. See `docs/contract-voice.md`.
+  opaque relay: the hub never reads a frame. See `docs/contract-voice.md`.
 
 ## 0.3.14
 
@@ -111,62 +125,23 @@
   label. This is the first release cut by `scripts/release.sh`, and proving
   that path is the reason it exists.
 
-## 0.3.13
+## 0.3.3 to 0.3.13
 
-- Updates: a failure always carries a reason. `str()` of an httpx timeout is
-  the empty string, so the payload dropped the field and the cloud recorded
-  `failed` with no error at all — which is how both of the updates that timed
-  out on the old 20-second budget arrived, and why neither could be diagnosed
-  without reading the box. Falls back to the exception's type name.
-
-## 0.3.12
-
-- Updates: the self-update asks Core to install the add-on's update entity, and
-  Core does not answer until the image is pulled and the container replaced.
-  That ran on the HA client's 20s read timeout, so a slow pull reported
-  `failed` for an update that was still running — and clearing the in-progress
-  flag killed the resume that would have sent the real result. The install now
-  gets the same 20-minute budget the Supervisor call had.
-- Cloud: `agent_version` is what the Supervisor reports installed, not a
-  version declared in this source tree. The cloud's "is there an update" is
-  that value against the store's, so the two have to come from the same place;
-  a hand-maintained copy drifting either hides an update or offers one forever.
-
-## 0.3.3 — 0.3.11
-
-Getting a delivered unit to update itself from the app, with nothing typed on
-the box. Nine releases because each fix could only be proved by publishing one
-and watching a real unit take it.
-
-- Updates: the cloud's "update now" never ran — the downlink handed the update
-  id to a callback that took no arguments, and the listener's handler guard
-  swallowed the TypeError, so every cloud-triggered update logged a failure and
-  did nothing.
-- Updates: every pass reloads the add-on store before comparing versions. The
-  Supervisor's `update_available` is measured against its cached copy of the
-  store, which refreshes on its own slow schedule, so a release published
-  minutes earlier was invisible and both the daily self-check and the cloud's
-  "update now" reported success having installed nothing.
-- Updates: the self-update asked the Supervisor to update the slug `self`,
-  which addresses this add-on for reads but does not exist in the store an
-  update resolves against — every attempt failed with "App self does not exist
-  in the store". The real slug is read from the add-on's own info.
-- Updates: the ask then moved to Home Assistant. The Supervisor refuses an
-  add-on's request to update itself ("App <slug> can't update itself!") because
-  the update kills the container mid-request; the same ask from Core is
-  allowed. Falls back to the Supervisor when Core has no matching entity.
-- Updates: an update may carry `scope: "addon"`, which updates this add-on only
-  and leaves Home Assistant OS and Core alone. The scope is persisted, so the
-  restart the update itself causes resumes the same narrow pass instead of
-  widening into a reboot, and the resume does not re-announce `started`.
-- Updates: `auto_update` is switched off for this add-on at startup. A unit
-  moves when its owner asks, not on Home Assistant's own schedule.
-- Cloud: MQTT keepalive drops from 30s to 15s. The broker declares a hub dead
-  at 1.5x keepalive before publishing the last-will, so an unplugged unit now
-  shows as offline in 22.5s instead of 45s.
-- LAN API: the role in the retained auth document's `members[]` entry now
-  overrides the edge token's `role` claim, so a role change made in the app
-  reaches the LAN with the next document instead of the next token.
+- Updating a hub from the app works with nothing typed on the box. The
+  cloud's "update now" reaches the add-on, every pass refreshes the add-on
+  store first so a version published minutes earlier is visible, the install
+  is asked of Home Assistant (the Supervisor refuses an add-on that asks to
+  update itself), a slow image pull has twenty minutes instead of twenty
+  seconds, and a failure always carries a reason.
+- An update may carry `scope: "addon"`, which moves this add-on only and
+  leaves Home Assistant OS and Core alone; the restart the install causes
+  resumes the same pass.
+- `auto_update` is switched off for this add-on at startup: a hub moves when
+  its owner asks, not on Home Assistant's own schedule.
+- The version Lurk compares against the store is what the Supervisor reports
+  installed, so the app never hides an update or offers one forever.
+- A role change made in the app reaches the local API with the next auth
+  document instead of the next token.
 
 ## 0.3.2
 
