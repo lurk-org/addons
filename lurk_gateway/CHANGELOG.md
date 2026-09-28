@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.7.3
+
+- The hub binds Lurk's catalog to Home Assistant's registries and publishes
+  things: its structure names the catalog it bound with, and the LAN and the
+  cloud serve exactly the entities those things bind. The image carries its
+  own catalog and the hub takes the cloud's newer signed one at `welcome`. A
+  hub on 0.7.2 sends a structure with no catalog, which the app cannot draw.
+- Every control, on the LAN, through the cloud and by voice, passes the
+  hub's allow-list, and a held action needs a confirm id.
+- The owner adds, configures and removes connectors through Home Assistant's
+  own flows, and an update brings the hub's custom integrations to the
+  catalog's version with one Home Assistant restart.
+- Anyone on a site reads an entity's history from the hub's recorder, and
+  every row carries the last state an entity held before it went away.
+- The structure carries the temperature unit, the icon an owner chose for
+  each entity and what the owner hid; the owner renames, moves, gives an
+  icon to and hides an entity.
+- No LAN bearer, frame or password reaches the hub's log.
+
 ## 0.7.2
 
 - A control answers with the state the device reached, not a state read
