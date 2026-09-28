@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.4
+
+- An update no longer fails when the store is slow to reload: the hub waits
+  up to five minutes for the Supervisor, and a reload that still does not
+  finish is logged and never ends the update.
+- A hub whose add-on was installed since Home Assistant Core last started
+  has no update entity, so its first update restarts Core, waits for the
+  entity and installs through it, instead of failing and asking for a
+  restart by hand.
+
 ## 0.7.3
 
 - The hub binds Lurk's catalog to Home Assistant's registries and publishes
