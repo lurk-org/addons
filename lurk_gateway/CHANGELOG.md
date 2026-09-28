@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.5
+
+- A version to update to: nothing changes in the add-on. It is the first
+  update the 0.7.4 updater runs, and the first whose progress Lurk shows
+  live, installing with its percentage, then restarting, then done.
+
 ## 0.7.4
 
 - An update no longer fails when the store is slow to reload: the hub waits
