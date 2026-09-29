@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.8.0
+
+- The gateway speaks Home Assistant's own entities: the structure lists its
+  floors, areas, devices, entities, config entries, subentries and labels,
+  and the app draws each entity with its domain's widget.
+- Every control passes one gate: each entity and each action has a tier
+  (read, act, confirm, deny), an owner can tighten an entity's tier, and a
+  confirm action needs a hold.
+- Every action is followed to its outcome (confirmed, unconfirmed, failed
+  or timed out) and written to an action record on the gateway, which keeps
+  codes and passwords out of it.
+- The store offers every integration Home Assistant has, and an owner adds,
+  reconfigures and removes them, with their subentries and repairs, through
+  Home Assistant's own setup flows.
+- A discovery or an expired login waits as a card on Today until the owner
+  sets it up, ignores it or signs in again.
+
 ## 0.7.5
 
 - A version to update to: nothing changes in the add-on. It is the first

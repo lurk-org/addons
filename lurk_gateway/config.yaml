@@ -1,5 +1,5 @@
 name: Lurk Gateway
-version: "0.7.5"
+version: "0.8.0"
 slug: lurk_gateway
 description: >-
   Local Home Assistant manager and the single uplink/downlink channel to the
@@ -40,8 +40,8 @@ ports_description:
 map:
   - addon_config:rw
   - homeassistant_config:rw
-# cloud_base_url defaults to production; the bench overrides it through
-# scripts/push.sh (CLOUD_BASE_URL in gateway/.env). serial normally comes from the
+# cloud_base_url defaults to production; the bench overrides it in the add-on's
+# Configuration (scripts/factory.py --link writes it). serial normally comes from the
 # hardware and the override exists only for bench units without one.
 # enrollment_token is written once by the factory (or by support after a
 # reflash) and is burned by the cloud on use.
