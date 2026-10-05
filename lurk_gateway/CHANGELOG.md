@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.9.0
+
+- Lurk has its own presence inside Home Assistant: the gateway installs the
+  Lurk integration from the catalog, restarts Home Assistant once for it,
+  stages every later install for a quiet window or a tap in the app, and
+  sets it up with no person at the box.
+- A connector's semantics bind meaning to entities per device, so the
+  assistant answers from roles, a role's risk tightens an action's tier,
+  and an action is verified by the role it changes, refused by a
+  precondition or a cooldown with the reason.
+- One tool table on the gateway answers the app, Home Assistant's own
+  assistants and Assist; an Assist turn runs on the gateway for the person
+  it came from, with the cloud only forwarding the model step.
+- A vendor's own service passes the gate through its semantics, with its
+  parameters checked and its report in the answer.
+- A cloud integration signs in with Lurk's own OAuth client, with no secret
+  on the box; Google is the first provider.
+- An owner links each person to their Home Assistant user, and an action
+  Assist could not finish reaches the app as a hold.
+
 ## 0.8.0
 
 - The gateway speaks Home Assistant's own entities: the structure lists its
