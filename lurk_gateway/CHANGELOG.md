@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.3
+
+- The assistant finds what a person names through home_state and acts on
+  what it lists; a name the control tool cannot place answers with the near
+  entities, so the assistant picks or looks again instead of refusing.
+
 ## 0.9.2
 
 - The assistant looks a thing up before saying it is missing, and knows any
