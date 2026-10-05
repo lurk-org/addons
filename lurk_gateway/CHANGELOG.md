@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.1
+
+- The Lurk integration reaches the gateway over TLS, as the LAN port serves
+  it, so it sets up instead of retrying.
+- An action record's `before` is the followed entity's row, the one its
+  `after` shows.
+- The Auto Pulse integration holds its report subscription from its setup,
+  so a kit's instant report is never missed.
+- The assistant's control tool takes an entity's name as its target, so a
+  spoken name is acted on instead of answered as not found.
+
 ## 0.9.0
 
 - Lurk has its own presence inside Home Assistant: the gateway installs the
