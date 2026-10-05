@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.2
+
+- The assistant looks a thing up before saying it is missing, and knows any
+  entity the home lists can be a control target, not only the roles.
+
 ## 0.9.1
 
 - The Lurk integration reaches the gateway over TLS, as the LAN port serves
