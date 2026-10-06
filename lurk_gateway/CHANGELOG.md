@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.0
+
+- Lurk answers by voice from the app on the LAN; the assistant's reasoning
+  now lives in the Lurk integration.
+
 ## 0.9.3
 
 - The assistant finds what a person names through home_state and acts on
